@@ -42,6 +42,7 @@ export async function PATCH(
     const {
       name,
       price,
+      stock,
       categoryId,
       colorId,
       sizeId,
@@ -72,13 +73,13 @@ export async function PATCH(
       return new NextResponse("Category ID is required", { status: 400 });
     }
 
-    if (!colorId) {
-      return new NextResponse("Color ID is required", { status: 400 });
-    }
+    // if (!colorId) {
+    //   return new NextResponse("Color ID is required", { status: 400 });
+    // }
 
-    if (!sizeId) {
-      return new NextResponse("Size ID is required", { status: 400 });
-    }
+    // if (!sizeId) {
+    //   return new NextResponse("Size ID is required", { status: 400 });
+    // }
 
     if (!params.productId) {
       return new NextResponse("Missing product ID", { status: 400 });
@@ -102,6 +103,7 @@ export async function PATCH(
       data: {
         name,
         price,
+        stock,
         categoryId,
         colorId,
         sizeId,

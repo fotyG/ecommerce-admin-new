@@ -38,9 +38,10 @@ const formSchema = z.object({
   name: z.string().min(1),
   images: z.object({ url: z.string() }).array(),
   price: z.coerce.number().min(1),
+  stock: z.string().min(1),
   categoryId: z.string().min(1),
-  colorId: z.string().min(1),
-  sizeId: z.string().min(1),
+  colorId: z.string().optional(),
+  sizeId: z.string().optional(),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 });
@@ -52,7 +53,8 @@ interface ProductFormProps {
     | (Product & {
         images: Image[];
       })
-    | null;
+    | null
+    | any;
   categories: Category[];
   colors: Color[];
   sizes: Size[];
@@ -81,14 +83,16 @@ const ProductForm: React.FC<ProductFormProps> = ({
       ? {
           ...initialData,
           price: parseFloat(String(initialData?.price)),
+          stock: String(initialData?.stock),
         }
       : {
           name: "",
           images: [],
           price: 0,
+          stock: 0,
           categoryId: undefined,
-          colorId: undefined,
-          sizeId: undefined,
+          // colorId: "",
+          // sizeId: "",
           isFeatured: false,
           isArchived: false,
         },
@@ -252,6 +256,24 @@ const ProductForm: React.FC<ProductFormProps> = ({
                       ))}
                     </SelectContent>
                   </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="stock"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Stock</FormLabel>
+                  <FormControl>
+                    <Input
+                      type="number"
+                      disabled={loading}
+                      placeholder="Amount in stock"
+                      {...field}
+                    />
+                  </FormControl>
                   <FormMessage />
                 </FormItem>
               )}
