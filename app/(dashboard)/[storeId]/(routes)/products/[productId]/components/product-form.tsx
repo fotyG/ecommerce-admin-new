@@ -286,13 +286,13 @@ const ProductForm: React.FC<ProductFormProps> = ({
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
+                    value={field.value ?? undefined}
+                    defaultValue={field.value ?? undefined}
                   >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue
-                          defaultValue={field.value}
+                          defaultValue={field.value ?? undefined}
                           placeholder="Select a size"
                         />
                       </SelectTrigger>
@@ -321,13 +321,13 @@ const ProductForm: React.FC<ProductFormProps> = ({
                   <Select
                     disabled={loading}
                     onValueChange={field.onChange}
-                    value={field.value}
-                    defaultValue={field.value}
+                    value={field.value ?? undefined}
+                    defaultValue={field.value ?? undefined}
                   >
                     <FormControl>
                       <SelectTrigger>
                         <SelectValue
-                          defaultValue={field.value}
+                          defaultValue={field.value ?? undefined}
                           placeholder="Select a color"
                         />
                       </SelectTrigger>
