@@ -40,8 +40,8 @@ const formSchema = z.object({
   price: z.coerce.number().min(1),
   stock: z.string().min(1),
   categoryId: z.string().min(1),
-  colorId: z.string().optional(),
-  sizeId: z.string().optional(),
+  colorId: z.string().optional().nullable(),
+  sizeId: z.string().optional().nullable(),
   isFeatured: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional(),
 });
@@ -53,8 +53,7 @@ interface ProductFormProps {
     | (Product & {
         images: Image[];
       })
-    | null
-    | any;
+    | null;
   categories: Category[];
   colors: Color[];
   sizes: Size[];
@@ -89,10 +88,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
           name: "",
           images: [],
           price: 0,
-          stock: 0,
+          stock: "0",
           categoryId: undefined,
-          // colorId: "",
-          // sizeId: "",
+          colorId: undefined,
+          sizeId: undefined,
           isFeatured: false,
           isArchived: false,
         },
