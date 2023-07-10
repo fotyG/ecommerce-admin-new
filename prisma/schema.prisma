@@ -87,7 +87,8 @@ model Product {
   category   Category    @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name       String
   price      Decimal
-  stock      String         
+  stock      String
+  url        String?         
   isFeatured Boolean     @default(false)
   isArchived Boolean     @default(false)
   sizeId     String?      

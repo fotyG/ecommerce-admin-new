@@ -39,6 +39,7 @@ const formSchema = z.object({
   images: z.object({ url: z.string() }).array(),
   price: z.coerce.number().min(1),
   stock: z.string().min(1),
+  url: z.string().optional(),
   categoryId: z.string().min(1),
   colorId: z.string().optional().nullable(),
   sizeId: z.string().optional().nullable(),
@@ -83,12 +84,14 @@ const ProductForm: React.FC<ProductFormProps> = ({
           ...initialData,
           price: parseFloat(String(initialData?.price)),
           stock: String(initialData?.stock),
+          url: String(initialData?.url),
         }
       : {
           name: "",
           images: [],
           price: 0,
           stock: "0",
+          url: undefined,
           categoryId: undefined,
           colorId: undefined,
           sizeId: undefined,
@@ -270,6 +273,23 @@ const ProductForm: React.FC<ProductFormProps> = ({
                       type="number"
                       disabled={loading}
                       placeholder="Amount in stock"
+                      {...field}
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="url"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Url</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={loading}
+                      placeholder="Product url"
                       {...field}
                     />
                   </FormControl>

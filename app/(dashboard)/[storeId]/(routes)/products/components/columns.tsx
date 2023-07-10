@@ -38,6 +38,10 @@ export const columns: ColumnDef<ProductColumn>[] = [
     header: "Stock",
   },
   {
+    accessorKey: "url",
+    header: "URL",
+  },
+  {
     accessorKey: "category",
     header: "Category",
   },
